@@ -48,7 +48,7 @@ input[type=text] {
     outline: none;
 }
 
-.two {
+.container-input-color {
     border: 0;
     border: 1px solid #ededed;
     border-radius: 5px;

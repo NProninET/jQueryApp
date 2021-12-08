@@ -9,28 +9,28 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     $('button').click(function() {
-      let inputValue = document.querySelector('.input-text').value
+      addNewContainer()
+    })
+
+    $('.input-text').on('keydown', function(event) {
+
+      if (event.keyCode === 13) {
+        addNewContainer()
+      }
+    })
+
+    function addNewContainer() {
+      
+      console.log('стало');
+      let inputValue = document.querySelector('.input-text').value.trim()
+      if(!inputValue) return;
       let i = Math.round(Math.random() * parseInt(colorItems.length - 1))
       let classn = colorItems[i].classList[1]
+
       let newContainer = $('<div/>', { 'class': `container ${classn}` })
       .append("<div class='checkbox'>" + "<input type='checkbox'></input>")
       .append(`<div class='content'>${inputValue}</div>`)
       .appendTo('.wrapper').insertBefore('.two')
-    })
-
-    $('.input-text').on('keydown', function(event) {
-      let inputValue = document.querySelector('.input-text').value
-      let i = Math.round(Math.random() * parseInt(colorItems.length - 1))
-      let classn = colorItems[i].classList[1]
-
-      if (event.keyCode === 13 && inputValue != '') {
-          let newContainer = $('<div/>', { 'class': `container ${classn}` })
-          .append("<div class='checkbox'>" + "<input type='checkbox'></input>")
-          .append(`<div class='content'>${inputValue}</div>`)
-          .appendTo('.wrapper').insertBefore('.two')
-          $('.input-text').val('');  
-      }
-       
-    })
-})
+      $('.input-text').val(''); 
+    }})
 
